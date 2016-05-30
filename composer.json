@@ -1,0 +1,17 @@
+{
+  "name": "CRIDIP-SWD/FRAMEWORK",
+  "description": "Systeme Primaire MVC de Cridip",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "SAS CRIDIP",
+      "email": "contact@cridip.com"
+    }
+  ],
+  "autoload":{
+    "psr-4":{
+      "App\\": "app"
+    }
+  }
+}
