@@ -11,11 +11,11 @@ namespace App\general;
 
 class constante
 {
-    public $HTTP              = "https://";
-    public $URL               = "portail.cridip.com/";
+    public $HTTP              = "";
+    public $URL               = "";
     public $ASSETS            = "view/assets/";
-    public $SOURCES           = "https://ns342142.ip-5-196-76.eu/gc/";
-    public $NOM_SITE          = "PORTAIL CRIDIP";
+    public $SOURCES           = "";
+    public $NOM_SITE          = "";
 }
 class redirect extends constante
 {
@@ -49,6 +49,10 @@ class redirect extends constante
         return implode("/", $dos);
     }
 
+    public function getSources($redirect){
+        return $this->SOURCES.$redirect;
+    }
+
     public function redirect($view = null, $sub = null, $data = null, $type = null, $service = null, $text = null){
 
         if(!empty($view)){$redirect = "index.php?view=".$view;}
@@ -58,6 +62,35 @@ class redirect extends constante
 
         header("Location: ".$this->getUrl(array(), false).$redirect);
 
+    }
+
+    /**
+     * @param $folder //Dossier de la bibliothèque d'icones
+     * @param $name //Nom de l'icone
+     * @param string $type //Type d'extension ciblé (png, jpg, bmp, etc...)
+     * @return string // Retourne le lien à inserer dans une balise
+     */
+    public function get_icon($folder, $name, $type = 'png'){
+        return $this->getUrl(array('global/'))."images/icons/".$folder."/".$name.".".$type;
+    }
+
+    /**
+     * @param $bundle           // Dossier d'images (avatar, gallery, etc...)
+     * @param $images           // Nom de l'image
+     * @param $ext              // Extension de l'image (Par défault: PNG)
+     * @param string $class     // Permet de rajouter une class à l'images (par default: VOID)
+     * @param string $width     // Permet de désigner une largeur à l'image (par default: VOID)
+     * @param string $height    // Permet de désigner une hauteur à l'image (par default: VOID)
+     * @return string           // Retourne le delta IMG SRC
+     */
+    public function get_images($bundle, $images, $ext = "png", $class = "", $width = "", $height = "")
+    {
+        $redirect = new redirect();
+        return '<img src="'.$redirect->getUrl(array('global/')).'images/'.$bundle.'/'.$images.'.'.$ext.'" class="'.$class.'" width="'.$width.'" height="'.$height.'"/>';
+    }
+
+    public function racine(){
+        return $this->HTTP.$this->DOMAINE;
     }
 
 }

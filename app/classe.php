@@ -5,6 +5,7 @@ use App\general\database;
 use App\general\date;
 use App\general\download;
 use App\general\images;
+use App\general\insert;
 use App\general\number;
 use App\general\redirect;
 use App\general\generator;
@@ -22,6 +23,7 @@ $download = new download();
 $ajax = new ajax();
 $ssh = new ssh();
 $images = new images();
+$insert = new insert();
 
 // END FRAMEWORK INCLUSION //
 
